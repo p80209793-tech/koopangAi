@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOAS Electronics Collection</title>
+    <title>BOAS Sports Collection</title>
     <!-- Fonts -->
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -196,7 +196,6 @@
             margin-bottom: 0;
         }
 
-        /* Legacy styles kept for safety, can be cleaned up later */
         .rating {
             color: var(--star-color);
             font-weight: 700;
@@ -216,38 +215,6 @@
             font-size: 14px;
             font-weight: 500;
             color: #aaa;
-        }
-
-        /* New Layout Styles */
-        .product-header {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .product-image-container {
-            display: block;
-            width: 100%;
-            height: 250px;
-            /* Bigger image area */
-            margin-bottom: 24px;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.3s ease;
-        }
-
-        .product-image-container:hover {
-            border-color: var(--accent-color);
-            transform: scale(1.02);
-        }
-
-        .large-product-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Show full image */
-            padding: 10px;
         }
 
         /* AI Analysis Section */
@@ -322,8 +289,9 @@
         }
 
         @media (max-width: 600px) {
-            .card-main {
-                flex-direction: column;
+            .rating-price {
+                flex-direction: row;
+                gap: 12px;
             }
 
             .analysis-grid {
@@ -355,22 +323,22 @@
 
             <div class="list-grid">
 
-                <!-- Item 1: iMuse Tablet -->
+                <!-- Item 1: Wireless Earbuds -->
                 <article class="product-card">
 
                     <!-- 1. Title Information -->
                     <div class="product-header">
-                        <div class="item-category">BEST TABLET</div>
-                        <h2 class="item-name">아이뮤즈 27.9cm 뮤패드 K11 LTE (8GB/128GB)</h2>
+                        <div class="item-category">BEST SPORTS GEAR</div>
+                        <h2 class="item-name">프리미엄 노이즈캔슬링 무선 블루투스 이어폰</h2>
                         <div class="rating-price">
-                            <span class="rating">⭐ 4.7 (1,519 reviews)</span>
-                            <span class="price">219,140<small>원</small></span>
+                            <span class="rating">⭐ 4.9 (12,300+ reviews)</span>
+                            <span class="price">29,800<small>원~</small></span>
                         </div>
                     </div>
 
                     <!-- 2. Large Clickable Image -->
-                    <a href="https://link.coupang.com/a/dq1oRK" target="_blank" class="product-image-container">
-                        <img src="images/imuse_tablet.png" alt="iMuse Tablet" class="large-product-img">
+                    <a href="https://link.coupang.com/a/dq4EiE" target="_blank" class="product-image-container">
+                        <img src="images/sports_earbuds.png" alt="Wireless Earbuds" class="large-product-img">
                     </a>
 
                     <!-- 3. AI Analysis -->
@@ -379,31 +347,29 @@
                         <div class="analysis-grid">
                             <div class="pros">
                                 <span class="pros-label">장점</span>
-                                <li>가성비 끝판왕: 20만원대 LTE 태블릿</li>
-                                <li>선명한 화질: 2K IPS 디스플레이 탑재</li>
-                                <li>넉넉한 용량: 8GB RAM + 128GB 저장소</li>
+                                <li>강력한 저음: 운동 활력을 높여주는 베이스 사운드</li>
+                                <li>편안한 착용감: 격한 움직임에도 빠지지 않는 디자인</li>
+                                <li>긴 배터리 수명: 한 번 충전으로 장시간 사용 가능</li>
                             </div>
                             <div class="cons">
                                 <span class="cons-label">단점</span>
-                                <li>고사양 3D 게임에는 다소 무리</li>
-                                <li>카메라 성능은 평범한 수준</li>
+                                <li>터치 컨트롤이 민감하여 오작동 가능성 있음</li>
+                                <li>전용 앱 지원이 다소 제한적일 수 있음</li>
                             </div>
                         </div>
                     </div>
 
-                    <a href="https://link.coupang.com/a/dq1oRK" target="_blank" class="buy-action">
+                    <a href="https://link.coupang.com/a/dq4EiE" target="_blank" class="buy-action">
                         쿠팡 최저가 보러가기 →
                     </a>
                 </article>
 
                 <!-- Placeholder for future items -->
                 <article class="product-card" style="opacity: 0.6;">
-                    <div class="card-main">
-                        <div class="item-icon">📱</div>
-                        <div class="item-content">
-                            <h2 class="item-name" style="color: #666;">Coming Soon...</h2>
-                            <p style="color: #666; font-size: 13px;">더 많은 디지털 추천템이 준비중입니다.</p>
-                        </div>
+                    <div class="product-header">
+                        <div class="item-icon" style="font-size: 40px; margin-bottom: 20px;">💪</div>
+                        <h2 class="item-name" style="color: #666;">Coming Soon...</h2>
+                        <p style="color: #666; font-size: 13px;">더 많은 스포츠 추천템이 준비중입니다.</p>
                     </div>
                 </article>
 
