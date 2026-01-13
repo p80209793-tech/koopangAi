@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOAS Living Collection</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <style>
+        :root {
+            --glass-bg: rgba(20, 20, 25, 0.6);
+            --glass-card-bg: rgba(30, 30, 35, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 20px;
+            --accent-color: #00f2ff;
+            --text-main: #ffffff;
+            --text-sub: #a0a0a0;
+            --star-color: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            text-decoration: none;
+        }
+
+        body {
+            width: 100vw;
+            min-height: 100vh;
+            background: #050505;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* 3D Background */
+        .spline-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 100;
+        }
+
+        .back-btn {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 20px 60px;
+        }
+
+        /* AI Recommended List Section */
+        .list-section {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .list-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF00E5, #9E00FF);
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 20px rgba(158, 0, 255, 0.4);
+        }
+
+        .list-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .list-grid {
+            display: grid;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .product-card {
+            background: var(--glass-card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: fadeInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            background: rgba(45, 45, 50, 0.6);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* New Layout Styles */
+        .product-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .product-image-container {
+            display: block;
+            width: 100%;
+            height: 250px;
+            /* Bigger image area */
+            margin-bottom: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .product-image-container:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.02);
+        }
+
+        .large-product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Show full image */
+            padding: 10px;
+        }
+
+        .item-category {
+            font-size: 13px;
+            color: var(--accent-color);
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .item-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .rating-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 0;
+        }
+
+        /* Legacy styles kept for safety, can be cleaned up later */
+        .rating {
+            color: var(--star-color);
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .price small {
+            font-size: 14px;
+            font-weight: 500;
+            color: #aaa;
+        }
+
+        /* AI Analysis Section */
+        .ai-analysis {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .analysis-title {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .pros,
+        .cons {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .pros-label {
+            color: #4ade80;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+
+        .cons-label {
+            color: #ff6b6b;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+
+        .buy-action {
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: #000;
+            text-align: center;
+            border-radius: 14px;
+            font-weight: 800;
+            transition: opacity 0.2s;
+        }
+
+        .buy-action:hover {
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card-main {
+                flex-direction: column;
+            }
+
+            .analysis-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+    </style>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.0/build/spline-viewer.js"></script>
+</head>
+
+<body>
+
+    <nav class="back-nav">
+        <a href="index.html" class="back-btn">← 목록으로</a>
+    </nav>
+
+    <div class="spline-bg">
+        <spline-viewer url="https://prod.spline.design/6Wq1Q7slj9RC-9zR/scene.splinecode"></spline-viewer>
+    </div>
+
+    <div class="content-container">
+
+        <section class="list-section">
+            <div class="list-header">
+                <span class="ai-badge">AI POWERED</span>
+                <h1 class="list-title">AI 추천 쿠팡 목록</h1>
+            </div>
+
+            <div class="list-grid">
+
+                <!-- Item 1: Folding Living Box (User Provided) -->
+                <article class="product-card">
+
+                    <!-- 1. Title Information -->
+                    <div class="product-header">
+                        <div class="item-category">BEST STORAGE</div>
+                        <h2 class="item-name">폴딩 대용량 리빙박스 (이동식/접이식)</h2>
+                        <div class="rating-price">
+                            <span class="rating">⭐ 4.8 (2,104 reviews)</span>
+                            <span class="price">28,900<small>원</small></span>
+                        </div>
+                    </div>
+
+                    <!-- 2. Large Clickable Image -->
+                    <a href="https://link.coupang.com/a/dq02bI" target="_blank" class="product-image-container">
+                        <img src="https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/c135/13516d0e7fd3b47dc1548952584820bd9a069610fe9db4f3a5f288c2e4f5.jpg"
+                            alt="Folding Living Box" class="large-product-img">
+                    </a>
+
+                    <!-- 3. AI Analysis -->
+                    <div class="ai-analysis">
+                        <div class="analysis-title">✨ AI 분석 리포트</div>
+                        <div class="analysis-grid">
+                            <div class="pros">
+                                <span class="pros-label">장점</span>
+                                <li>도어형 오픈으로 물건 꺼내기 편리함</li>
+                                <li>사용하지 않을 땐 접어서 틈새 보관</li>
+                                <li>바퀴가 있어 이동이 매우 자유로움</li>
+                            </div>
+                            <div class="cons">
+                                <span class="cons-label">단점</span>
+                                <li>초기 조립 과정이 필요함 (난이도 하)</li>
+                                <li>무거운 중량물 적재 시 주의 필요</li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://link.coupang.com/a/dq02bI" target="_blank" class="buy-action">
+                        쿠팡 최저가 보러가기 →
+                    </a>
+                </article>
+
+                <!-- Placeholder for future items -->
+                <article class="product-card" style="opacity: 0.6;">
+                    <div class="card-main">
+                        <div class="item-icon">🏠</div>
+                        <div class="item-content">
+                            <h2 class="item-name" style="color: #666;">Coming Soon...</h2>
+                            <p style="color: #666; font-size: 13px;">더 많은 리빙 추천템이 준비중입니다.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <footer style="margin-top: 40px; text-align: center; color: #cccccc; font-size: 11px;">
+            <p>이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
