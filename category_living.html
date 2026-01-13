@@ -85,50 +85,39 @@
             padding: 100px 20px 60px;
         }
 
-        /* AI Recommended List Section */
+        /* AI Recommended List Section - Grid Layout */
         .list-section {
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
+            /* Wider container */
         }
 
         .list-header {
             text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .ai-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #FF00E5, #9E00FF);
-            color: white;
-            font-size: 12px;
-            font-weight: 800;
-            padding: 6px 12px;
-            border-radius: 100px;
-            margin-bottom: 12px;
-            box-shadow: 0 0 20px rgba(158, 0, 255, 0.4);
-        }
-
-        .list-title {
-            font-size: 36px;
-            font-weight: 800;
-            color: white;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
         }
 
         .list-grid {
             display: grid;
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            /* 2+ columns */
+            gap: 20px;
             width: 100%;
         }
 
         .product-card {
             background: var(--glass-card-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 20px;
+            /* Slightly smaller radius */
+            padding: 20px;
+            /* Reduced padding */
             backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
             animation: fadeInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-card:hover {
@@ -140,17 +129,17 @@
 
         /* New Layout Styles */
         .product-header {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-align: center;
         }
 
         .product-image-container {
             display: block;
             width: 100%;
-            height: 250px;
-            /* Bigger image area */
-            margin-bottom: 24px;
-            border-radius: 16px;
+            height: 180px;
+            /* Reduced from 250px */
+            margin-bottom: 16px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             background: rgba(255, 255, 255, 0.02);
@@ -167,25 +156,33 @@
             height: 100%;
             object-fit: contain;
             /* Show full image */
-            padding: 10px;
+            padding: 8px;
         }
 
         .item-category {
-            font-size: 13px;
+            font-size: 11px;
             color: var(--accent-color);
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 1px;
             display: inline-block;
         }
 
         .item-name {
-            font-size: 22px;
+            font-size: 18px;
+            /* Reduced from 22px */
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: white;
-            line-height: 1.4;
+            line-height: 1.3;
+            height: 48px;
+            /* Fixed height for alignment */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
         .rating-price {
@@ -365,15 +362,72 @@
                     </a>
                 </article>
 
-                <!-- Placeholder for future items -->
-                <article class="product-card" style="opacity: 0.6;">
-                    <div class="card-main">
-                        <div class="item-icon">🏠</div>
-                        <div class="item-content">
-                            <h2 class="item-name" style="color: #666;">Coming Soon...</h2>
-                            <p style="color: #666; font-size: 13px;">더 많은 리빙 추천템이 준비중입니다.</p>
+                <!-- Item 2: Modular Sofa -->
+                <article class="product-card">
+                    <div class="product-header">
+                        <div class="item-category">TRENDY FURNITURE</div>
+                        <h2 class="item-name">압축 모듈형 쇼파 (자유로운 배치/간편설치)</h2>
+                        <div class="rating-price">
+                            <span class="rating">⭐ 4.7 (SNS 인기템)</span>
+                            <span class="price">299,800<small>원~</small></span>
                         </div>
                     </div>
+                    <a href="https://link.coupang.com/a/dq5idu" target="_blank" class="product-image-container">
+                        <img src="images/modular_sofa.png" alt="Modular Sofa" class="large-product-img">
+                    </a>
+                    <div class="ai-analysis">
+                        <div class="analysis-title">✨ AI 분석 리포트</div>
+                        <div class="analysis-grid">
+                            <div class="pros">
+                                <span class="pros-label">장점</span>
+                                <li>내 맘대로 배치: 공간에 맞춰 자유롭게 변형 가능</li>
+                                <li>푹신한 착석감: 몸을 감싸주는 고탄성 폼</li>
+                                <li>감성 디자인: 어떤 인테리어에도 잘 어울리는 모던함</li>
+                            </div>
+                            <div class="cons">
+                                <span class="cons-label">단점</span>
+                                <li>패브릭 재질이라 오염에 주의 필요 (커버 세탁 확인)</li>
+                                <li>배송 후 압축 복원 시간이 필요할 수 있음</li>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://link.coupang.com/a/dq5idu" target="_blank" class="buy-action">
+                        쿠팡 최저가 보러가기 →
+                    </a>
+                </article>
+
+                <!-- Item 3: KAZT Bear Box -->
+                <article class="product-card">
+                    <div class="product-header">
+                        <div class="item-category">CUTE STORAGE</div>
+                        <h2 class="item-name">가쯔 곰돌이 패턴 리빙박스 (접이식/대용량)</h2>
+                        <div class="rating-price">
+                            <span class="rating">⭐ 4.6 (Cute Design)</span>
+                            <span class="price">24,900<small>원</small></span>
+                        </div>
+                    </div>
+                    <a href="https://link.coupang.com/a/dq54XI" target="_blank" class="product-image-container">
+                        <img src="images/kazt_organizer.png" alt="KAZT Bear Box" class="large-product-img">
+                    </a>
+                    <div class="ai-analysis">
+                        <div class="analysis-title">✨ AI 분석 리포트</div>
+                        <div class="analysis-grid">
+                            <div class="pros">
+                                <span class="pros-label">장점</span>
+                                <li>귀여운 디자인: 아기자기한 곰돌이 패턴</li>
+                                <li>편리한 사용: 투명창으로 내부 확인 및 전면 오픈</li>
+                                <li>공간 활용: 튼튼한 프레임으로 적층 보관 가능</li>
+                            </div>
+                            <div class="cons">
+                                <span class="cons-label">단점</span>
+                                <li>패브릭 소재라 습기에 주의</li>
+                                <li>패턴 취향이 갈릴 수 있음</li>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://link.coupang.com/a/dq54XI" target="_blank" class="buy-action">
+                        쿠팡 최저가 보러가기 →
+                    </a>
                 </article>
 
             </div>

@@ -85,50 +85,39 @@
             padding: 100px 20px 60px;
         }
 
-        /* AI Recommended List Section */
+        /* AI Recommended List Section - Grid Layout */
         .list-section {
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
+            /* Wider container */
         }
 
         .list-header {
             text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .ai-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #FF00E5, #9E00FF);
-            color: white;
-            font-size: 12px;
-            font-weight: 800;
-            padding: 6px 12px;
-            border-radius: 100px;
-            margin-bottom: 12px;
-            box-shadow: 0 0 20px rgba(158, 0, 255, 0.4);
-        }
-
-        .list-title {
-            font-size: 36px;
-            font-weight: 800;
-            color: white;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
         }
 
         .list-grid {
             display: grid;
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            /* 2+ columns */
+            gap: 20px;
             width: 100%;
         }
 
         .product-card {
             background: var(--glass-card-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 20px;
+            /* Slightly smaller radius */
+            padding: 20px;
+            /* Reduced padding */
             backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
             animation: fadeInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-card:hover {
@@ -218,19 +207,19 @@
             color: #aaa;
         }
 
-        /* New Layout Styles */
+        /* New Layout Styles (Compact) */
         .product-header {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-align: center;
         }
 
         .product-image-container {
             display: block;
             width: 100%;
-            height: 250px;
-            /* Bigger image area */
-            margin-bottom: 24px;
-            border-radius: 16px;
+            height: 180px;
+            /* Reduced to 180px */
+            margin-bottom: 16px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             background: rgba(255, 255, 255, 0.02);
@@ -247,7 +236,33 @@
             height: 100%;
             object-fit: contain;
             /* Show full image */
-            padding: 10px;
+            padding: 8px;
+        }
+
+        .item-category {
+            font-size: 11px;
+            color: var(--accent-color);
+            font-weight: 800;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .item-name {
+            font-size: 18px;
+            /* Reduced */
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+            line-height: 1.3;
+            height: 48px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
         /* AI Analysis Section */
@@ -392,6 +407,40 @@
                     </div>
 
                     <a href="https://link.coupang.com/a/dq1oRK" target="_blank" class="buy-action">
+                        쿠팡 최저가 보러가기 →
+                    </a>
+                </article>
+
+                <!-- Item 2: LG Monitor -->
+                <article class="product-card">
+                    <div class="product-header">
+                        <div class="item-category">4K MONITOR</div>
+                        <h2 class="item-name">LG전자 울트라파인 27인치 4K UHD (27UQ850V)</h2>
+                        <div class="rating-price">
+                            <span class="rating">⭐ 4.9 (160+ reviews)</span>
+                            <span class="price">649,000<small>원</small></span>
+                        </div>
+                    </div>
+                    <a href="https://link.coupang.com/a/dq5OpN" target="_blank" class="product-image-container">
+                        <img src="images/lg_monitor_4k.png" alt="LG UltraFine 4K" class="large-product-img">
+                    </a>
+                    <div class="ai-analysis">
+                        <div class="analysis-title">✨ AI 분석 리포트</div>
+                        <div class="analysis-grid">
+                            <div class="pros">
+                                <span class="pros-label">장점</span>
+                                <li>압도적 화질: Nano-IPS Black 패널과 4K 해상도</li>
+                                <li>맥 호환성: USB-C 타입으로 맥북 연결/충전 최적화</li>
+                                <li>전문가용: DCI-P3 98% 넓은 색영역 지원</li>
+                            </div>
+                            <div class="cons">
+                                <span class="cons-label">단점</span>
+                                <li>전문가급 사양이라 가격대가 다소 높음</li>
+                                <li>재고가 부족하여 품절이 잦을 수 있음</li>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://link.coupang.com/a/dq5OpN" target="_blank" class="buy-action">
                         쿠팡 최저가 보러가기 →
                     </a>
                 </article>
